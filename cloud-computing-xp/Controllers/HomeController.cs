@@ -1,6 +1,8 @@
 ﻿using cloud_computing_xp.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Globalization;
+using System.Xml.Linq;
 
 namespace cloud_computing_xp.Controllers
 {
@@ -13,8 +15,11 @@ namespace cloud_computing_xp.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string name)
         {
+            ViewBag.Date = DateTime.Now.ToString(new CultureInfo("pt-BR"));
+            ViewBag.Name = string.IsNullOrWhiteSpace(name) ? string.Empty : name;
+
             return View();
         }
 
