@@ -19,7 +19,6 @@ namespace cloud_computing_xp.Controllers
         {
             ViewBag.Date = DateTime.Now.ToString(new CultureInfo("pt-BR"));
             ViewBag.Name = string.IsNullOrWhiteSpace(name) ? string.Empty : name;
-
             return View();
         }
 
