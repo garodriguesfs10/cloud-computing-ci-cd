@@ -27,5 +27,5 @@ jobs:
         run: dotnet build ./cloud-computing-xp.sln --configuration Release --no-restore
         
       - name: Publish
-        run: dotnet publish ./cloud-computing-xp.sln --configuration Release --no-build --output '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}'      
+        run: dotnet publish ./cloud-computing-xp.sln --configuration Release --no-build
   
