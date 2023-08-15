@@ -6,7 +6,10 @@ on:
     branches:
     - master
 
-
+env: 
+  AZURE_WEBAPP_NAME: cloud-computing-service
+  AZURE_WEBAPP_PACKAGE_PATH: "./publish"
+  
 
 jobs:
   publish:
@@ -27,5 +30,12 @@ jobs:
         run: dotnet build ./cloud-computing-xp.sln --configuration Release --no-restore
         
       - name: Publish
-        run: dotnet publish ./cloud-computing-xp.sln --configuration Release --no-build
+        run: dotnet publish ./cloud-computing-xp.sln --configuration Release --no-build --output '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}'
+
+      - name: Deployment
+        uses: actions/webapps-deploy@v2
+        with:
+          app-name: ${{ env.AZURE_WEBAPP_NAME }}
+          publish-profile: ${{secrets.AZURE_PUBLISH_PROFILE}}
+          package: "${{ env.AZURE_WEBAPP_PACKAGE_PATH }}"
   
